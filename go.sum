@@ -1,0 +1,6 @@
+github.com/google/go-cmp v0.3.1/go.mod h1:8QqcDgzrUqlUb/G2PQTWiueGozuR1884gddMywk6iLU=
+github.com/gorilla/context v1.1.1/go.mod h1:kBGZzfjB9CEq2AlWe17Uuf7NDRt0dE0s8S51q0aT7Yg=
+github.com/gorilla/securecookie v1.1.1/go.mod h1:ra0sb63/xPlUeL+yeDciTfxMRAA+MP+HVt/4epWDjd4=
+github.com/gorilla/sessions v1.1.3/go.mod h1:8KCfur6+4Mqcc6S0FEfKuN15Vl5MgXW92AE8ovaJD0w=
+github.com/uoregon-libraries/gopkg v0.16.0 h1:oNeWonemH+uLSpY5r1r+KJnOTJBSiGQ2F/nzJmh7bAE=
+github.com/uoregon-libraries/gopkg v0.16.0/go.mod h1:pNXCq9en+GoGKyz4Qkaz0brgjKtNp3FlwUQ/VvQGPes=
