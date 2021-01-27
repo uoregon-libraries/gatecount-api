@@ -26,6 +26,8 @@ Building the app is relatively simple.  Dependencies:
 - A supported 1.x [Go compiler](https://golang.org/dl/)
 - Make
 
+Process:
+
 - Run `make`
 - If you really hate Make, you can just read the `Makefile` and execute the `go
   build` instructions manually, e.g., `go build -o bin/gatecount-api
