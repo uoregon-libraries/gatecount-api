@@ -25,7 +25,7 @@ func main() {
 	var startDaysAgo, endDaysAgo int
 	var verbose bool
 	flag.IntVar(&startDaysAgo, "days-ago-start", 0, "number of days ago to start TrafSys counts, e.g., 7 would mean the first day included is a week ago")
-	flag.IntVar(&endDaysAgo, "days-ago-end", 1, "number of days ago to end TrafSys counts, e.g., 2 would include from start through the day before yesterday")
+	flag.IntVar(&endDaysAgo, "days-ago-end", 1, "number of days ago to end TrafSys counts, e.g., 2 would include from start through the day before yesterday, while 0 would gather all available data from start date through today")
 	flag.BoolVar(&verbose, "verbose", false, "show lots of really painfully unnecessary logging")
 
 	flag.Parse()
@@ -34,8 +34,11 @@ func main() {
 	} else {
 		l = logger.Named("gatecount-api", logger.Info, false)
 	}
-	if startDaysAgo < 1 || endDaysAgo < 1 {
-		usage("--days-ago-start and --days-ago-end must both be at least 1")
+	if startDaysAgo < 1 {
+		usage("--days-ago-start must be at least 1")
+	}
+	if endDaysAgo < 0 {
+		usage("--days-ago-end must be at least 0")
 	}
 	if startDaysAgo > 33 {
 		usage("--days-ago-start cannot be greater than 33")
