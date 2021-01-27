@@ -90,12 +90,14 @@ PRs are welcomed!
 ## Port?
 
 If you find the amount of simplicity here disturbing, I apologize.  I'll port
-this to PHP or Ruby when I have time, and add gobs of unnecessary dependencies
-and configuration.  Then I'll create setup documentation that only work on a
-single version of a single OS with a single version of PHP/Ruby.  And of course
-I'll add out-of-date user documentation.
+this to PHP, Ruby, and nodejs when I have time, and add gobs of unnecessary
+dependencies and configuration.  Then I'll create setup documentation that only
+work on a single version of a single OS with a single version of PHP/Ruby.
+I'll also add `we haven't tested this on Windows, sorry ¯\_(ツ)_/¯` to those
+instructions.  And of course I'll add tons of other miscellaneous out-of-date
+user documentation.
 
-Actually that last piece probably *will* happen.  Dang it, I shoulda quit while
-I was ahead.
+(yes, that was sarcasm; I'm never porting this)
 
-(yes, that was sarcasm)
+Actually docs getting out of date probably *will* happen.  Dang it, I shoulda
+quit while I was ahead.
