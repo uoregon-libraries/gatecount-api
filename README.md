@@ -136,7 +136,7 @@ enough to be split nicely into large-ish batches.
 If you find the amount of simplicity here disturbing, I apologize.  I'll port
 this to PHP, Ruby, and nodejs when I have time, and add gobs of unnecessary
 dependencies and configuration.  Then I'll create setup documentation that only
-work on a single version of a single OS with a single version of PHP/Ruby.
+work on a single version of a single OS with a single version of PHP/Ruby/node.
 I'll also add `we haven't tested this on Windows, sorry ¯\_(ツ)_/¯` to those
 instructions.  And of course I'll add tons of other miscellaneous out-of-date
 user documentation.
