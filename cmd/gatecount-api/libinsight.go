@@ -47,7 +47,7 @@ func postCounts(libinsightURL string, aggregated map[string]*trafficCount) {
 				batch[i] = aggregated[key]
 			}
 
-			l.Debugf("Batching and posting %d counts to LibInsight: %s", len(batch))
+			l.Debugf("Batching and posting %d counts to LibInsight", len(batch))
 			var err = postBatch(libinsightURL, batch)
 			if err != nil {
 				l.Warnf("Unable to send data to LibInsight: %s", err)
@@ -94,7 +94,6 @@ func postBatch(postURL string, counts []*trafficCount) error {
 		return fmt.Errorf("unable to marshal JSON data: %w", err)
 	}
 
-	l.Debugf("Posting this: %s", string(trafData))
 	var req *http.Request
 	req, err = http.NewRequest("POST", postURL, bytes.NewBuffer(trafData))
 	if err != nil {
