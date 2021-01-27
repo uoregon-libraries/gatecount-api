@@ -120,11 +120,11 @@ func trafsysRequest(baseURL, token string, start, end time.Time) ([]*trafficCoun
 	}
 
 	for i, count := range counts {
-		l.Debugf("Processing count #%d of %d: %s", i, len(counts), count)
+		l.Debugf("Processing count #%d of %d: %s", i+1, len(counts), count)
 
 		err = count.postProcess()
 		if err != nil {
-			return nil, fmt.Errorf("invalid count (#%d of %d): %w", i, len(counts), err)
+			return nil, fmt.Errorf("invalid count (#%d of %d): %w", i+1, len(counts), err)
 		}
 
 		l.Debugf("Post-processed count: %s", count)
