@@ -4,7 +4,6 @@ import (
 	"flag"
 	"fmt"
 	"os"
-	"time"
 
 	"github.com/uoregon-libraries/gopkg/logger"
 )
@@ -40,9 +39,6 @@ func main() {
 	if endDaysAgo < 0 {
 		usage("--days-ago-end must be at least 0")
 	}
-	if startDaysAgo > 33 {
-		usage("--days-ago-start cannot be greater than 33")
-	}
 	if startDaysAgo < endDaysAgo {
 		usage("--days-ago-start must be greater than --days-ago-end")
 	}
@@ -59,19 +55,15 @@ func main() {
 	}
 
 	// Pull all traffic data from TrafSys
-	var start = time.Now().Add(-time.Hour * 24 * time.Duration(startDaysAgo)).Format("2006-01-02")
-	var end = time.Now().Add(-time.Hour * 24 * time.Duration(endDaysAgo)).Format("2006-01-02")
-	l.Infof("Pulling counts from TrafSys starting %s and ending (and including) %s", start, end)
-
 	var token, err = getToken(trafurl, user, pass)
 	if err != nil {
 		l.Fatalf("Could not get bearer token from Traf-Sys: %s", err)
 	}
 
 	var counts []*trafficCount
-	counts, err = getTraffic(trafurl, token, start, end)
+	counts, err = getTraffic(trafurl, token, startDaysAgo, endDaysAgo)
 	if err != nil {
-		l.Fatalf("Could not read traffic data for %s - %s from Traf-Sys: %s", start, end, err)
+		l.Fatalf("Could not read traffic data for from Traf-Sys: %s", err)
 	}
 
 	// Aggregate data per site, ignoring locations
