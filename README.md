@@ -46,6 +46,8 @@ https://golang.org/doc/install/source#environment
 
 ## Run
 
+### All together, now!
+
 Putting it all together is very simple:
 
 ```bash
@@ -66,11 +68,32 @@ The app then aggregates counts by ignoring location (e.g., "Front Entrance"),
 converts `SiteCode` to a LibInsight `gate_id`, and sends them to the LibInsight
 API endpoint configured via the environment.
 
-This command should be scheduled to overlap (e.g., run daily if pulling a week
-of data) if possible, so that a missed run doesn't mean lost counts.  Posting
-the same data to LibInsight multiple times, though undesireable, has no
-negative effects on the dataset's information, and is far better than losing
-data.
+### Your first run
+
+The first time you run this you probably want to import a *lot* of historic data.  We did it this way:
+
+```bash
+make
+./bin/gatecount-api --verbose --days-ago-start 3660 --days-ago-end 1 2>log
+```
+
+Piping the STDERR output to a file allowed us to see exactly what was being
+read from Traf-Sys and how the posts to LibInsight were goign.
+
+### Scheduling
+
+Your command should be scheduled to overlap its previous runs (e.g., run daily
+if pulling a week of data) if possible, so that a missed run doesn't mean lost
+counts.
+
+Alternatively, you could run daily, only pulling yesterday's data, but having a
+weekly "catch everything" run that pulls data for the last two weeks or
+something.  That way you're certain that even if a single run fails, you'll get
+the data eventually.
+
+Note: posting the same data to LibInsight multiple times, though undesireable,
+has no negative effects on the dataset's information, and is far better than
+losing data.
 
 ## Use outside of UO
 
