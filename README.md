@@ -87,6 +87,27 @@ not really reuse so much as a repurposing.
 
 PRs are welcomed!
 
+## Troubleshooting
+
+LibInsight's API is flaky.  The app had to have a lot more error handling than
+I'd have preferred, and it's still not really great.  LibInsight just doesn't
+tell you much when things fail, unless the failure is painfully obvious (like
+forgetting a `gate_id`).  You can't even rely on a valid HTTP status code
+having any extra meaning.
+
+### All retries fail
+
+One problem I'm noticing is that when there are batches posted to LibInsight
+which aren't big, you just get an error and that's that.  Your data never goes
+to LibInsight.  This is "fixed" by splitting batches in a way that ensures
+they're always at least 50 records, but there's still always the chance of
+getting a four-item batch due to circumstances outside our control.
+
+One way to try and handle this is to gather *too much* data.  Instead of, for
+instance, pulling just yesterday and today, you could pull everything over the
+course of the last week.  Then the total number of counts is likely to be big
+enough to be split nicely into large-ish batches.
+
 ## Port?
 
 If you find the amount of simplicity here disturbing, I apologize.  I'll port

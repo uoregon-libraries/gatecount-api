@@ -30,10 +30,7 @@ func postCounts(libinsightURL string, aggregated map[string]*trafficCount) {
 	sort.Strings(keys)
 
 	for retry < 10 {
-		var size = 500 >> retry
-		if size < 10 {
-			size = 10
-		}
+		var size = getSize(retry, len(keys))
 		l.Infof("Posting %d counts in batches of %d", len(keys), size)
 
 		for len(keys) > 0 {
@@ -131,4 +128,22 @@ func postBatch(postURL string, counts []*trafficCount) error {
 	}
 
 	return nil
+}
+
+// getSize determines how big a batch we want to send to LibInsight based on
+// how many times we've had to retry combined with how many keys (numKeys) we
+// have.  The size returned will be based on splitting keys into equal-ish
+// batches.  Because LibInsight is awesome with small batches.  Max size is
+// 450.  Just in case.  Yeah, this is getting SUPER hilarious.
+func getSize(retry, numKeys int) int {
+	var size = 450 >> retry
+	if size < 10 {
+		size = 10
+	}
+	var numBatches = numKeys / size
+	var addOne = (numKeys%size != 0)
+	if addOne {
+		numBatches++
+	}
+	return numKeys/numBatches + 1
 }
