@@ -30,10 +30,10 @@ func postCounts(libinsightURL string, aggregated map[string]*trafficCount) {
 	sort.Strings(keys)
 
 	for retry < 10 {
-		var size = getSize(retry, len(keys))
-		l.Infof("Posting %d counts in batches of %d", len(keys), size)
+		l.Infof("Posting %d aggregated counts to LibInsight", len(keys))
 
 		for len(keys) > 0 {
+			var size = getSize(retry, len(keys))
 			if size > len(keys) {
 				size = len(keys)
 			}
