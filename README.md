@@ -95,7 +95,7 @@ Note: posting the same data to LibInsight multiple times, though undesireable,
 has no negative effects on the dataset's information, and is far better than
 losing data.
 
-## Use outside of UO
+## Can I use this as an OOTB solution?!???!!!?
 
 This project could *almost* be reusable for others.  Almost.
 
